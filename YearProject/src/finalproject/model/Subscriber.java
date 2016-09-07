@@ -22,7 +22,7 @@ public class Subscriber extends Person implements Serializable, Cloneable, Compa
 	/** Subscriber month donate*/
 	private int monthDonate;
 	/** Static field - price for one service*/
-	private static final int PRICE = 13;
+	private static final int PRICE = 20;
 
 	/**
 	 * Constructor create new object with entered parameters.
