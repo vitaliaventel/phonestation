@@ -1,0 +1,62 @@
+package finalproject.inface;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import javax.swing.*;
+
+public class RequestsDialog extends JDialog {
+
+	public RequestsDialog(JFrame frame) {
+		super(frame, "Pending requests..", true);
+		JTextArea reqArea = new JTextArea();
+		reqArea.setEditable(false);
+		reqArea.setLineWrap(true);
+
+		JButton clear = new JButton("Clear");
+		clear.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent event) {
+				try {
+					File file = new File("resources", "subrequest_main.txt");
+					PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+					try {
+						out.print("");
+					} finally {
+						out.close();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				reqArea.setText("");
+			}
+		});
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(clear);
+		add(panel, BorderLayout.WEST);
+		add(new JScrollPane(reqArea), BorderLayout.CENTER);
+
+		try {
+			File file = new File("D:\\subsrequst_main.txt");
+			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+			try {
+				String s;
+				while ((s = in.readLine()) != null) {
+					reqArea.append(s + "\n");
+				}
+			} finally {
+				in.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		setSize(700, 400);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+}

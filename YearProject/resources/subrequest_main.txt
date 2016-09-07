@@ -1,0 +1,45 @@
+Pay request! Tue Mar 22 18:57:04 EET 2016
+Subscriber [id = 1814349291
+First name = Vitaly
+Last name = Leshchenko
+phoneNumber = 0968817454
+score = 60
+services = [God mode, Inlove]
+status = true]
+*************************************************
+Pay request! Tue Mar 22 18:57:37 EET 2016
+Subscriber [id = 1814349291
+First name = Vitaly
+Last name = Leshchenko
+phoneNumber = 0968817454
+score = 90
+services = [God mode, Inlove]
+status = true]
+*************************************************
+Pay request! Tue Mar 22 18:57:49 EET 2016
+Subscriber [id = 1814349291
+First name = Vitaly
+Last name = Leshchenko
+phoneNumber = 0968817454
+score = 120
+services = [God mode, Inlove]
+status = true]
+*************************************************
+Cancel services request! Tue Mar 22 18:58:19 EET 2016
+Subscriber [id = 1814349291
+First name = Vitaly
+Last name = Leshchenko
+phoneNumber = 0968817454
+score = 120
+services = [God mode, Inlove]
+status = true]
+*************************************************
+Change number request! Tue Mar 22 18:58:20 EET 2016
+Subscriber [id = 1814349291
+First name = Vitaly
+Last name = Leshchenko
+phoneNumber = 0953281432
+score = 120
+services = [God mode, Inlove]
+status = true]
+*************************************************

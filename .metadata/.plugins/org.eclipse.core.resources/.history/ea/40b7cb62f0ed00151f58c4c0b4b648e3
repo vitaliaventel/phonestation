@@ -1,0 +1,7 @@
+package finalproject.inface;
+
+import javax.swing.JDialog;
+
+public class ChangeNumberDialog extends JDialog {
+
+}

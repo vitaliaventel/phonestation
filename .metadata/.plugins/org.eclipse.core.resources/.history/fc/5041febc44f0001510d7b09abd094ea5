@@ -1,0 +1,34 @@
+package finalproject.model;
+
+import java.util.ArrayList;
+
+/**
+ * Interface for class Administrator
+ * @author VitaliyL
+ */
+public interface SubscriberDAO {
+	/**
+	 * @see {@link Admin#addSubscriber(Subscriber)}
+	 */
+	public long addSubscriber(Subscriber subscriber);
+	/**
+	 * @see {@link Admin#updateSubscriber(Subscriber)}
+	 */
+	public void updateSubscriber(Subscriber subscriber);
+	/**
+	 * @see {@link Admin#deleteSubscriber(int)}
+	 */
+	public void deleteSubscriber(int subId);
+	/**
+	 * @see {@link Admin#getSubscriber(int)}
+	 */
+	public Subscriber getSubscriber(int subId);
+	/**
+	 * @see {@link Admin#setContacts(ArrayList)}
+	 */
+	public void setContacts(ArrayList<Subscriber> subs);
+	/**
+	 * @see {@link Admin#findContacts()}
+	 */
+	public ArrayList<Subscriber> findContacts();
+}

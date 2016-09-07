@@ -1,0 +1,45 @@
+package finalproject.engine;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import javax.swing.JButton;
+import finalproject.model.Subscriber;
+
+public class SubFrameEngine implements ActionListener {
+
+	Subscriber sub;
+
+	public SubFrameEngine(Subscriber sub) {
+		this.sub = sub;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton src = (JButton) e.getSource();
+		if (src.getText().equals("Pay")) {
+			request("Pay request!!!");
+		} else if (src.getText().equals("Cancel services")) {
+			request("Cancel services request!!!");
+		} else if (src.getText().equals("Change number")) {
+			request("Change number request!!!");
+		}
+		
+	}
+
+	private void request(String message) {
+		try {
+			File file = new File("resources","subrequest_main.txt");
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+			try {
+				out.println(sub.toString());
+				out.println(message);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

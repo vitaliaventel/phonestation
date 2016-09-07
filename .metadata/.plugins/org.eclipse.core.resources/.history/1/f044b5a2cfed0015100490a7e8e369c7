@@ -1,0 +1,45 @@
+package finalproject.inface;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
+public class AdminPassDialog extends JDialog {
+	public AdminPassDialog(JFrame frame) {
+		super(frame, "Enter a password", true);
+		JPasswordField password = new JPasswordField();
+		JButton ok = new JButton("OK");
+		ok.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent event) {
+				if (password.getPassword().equals("admin")) {
+					dispose();
+					new AdminFrame();
+				} else {
+					JOptionPane.showMessageDialog(frame, "Incorrect password!!!", "Warning!",
+							JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(password);
+		panel.add(ok,CENTER_ALIGNMENT);
+		add(panel, BorderLayout.CENTER);
+		setSize(300, 80);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+}

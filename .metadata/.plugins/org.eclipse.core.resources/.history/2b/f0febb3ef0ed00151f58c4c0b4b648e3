@@ -1,0 +1,53 @@
+package finalproject.inface;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import javax.swing.*;
+
+import finalproject.model.Subscriber;
+
+public class PayDialog extends JDialog {
+	private JSpinner score;
+	private Subscriber sub;
+
+	public PayDialog(JFrame frame, Subscriber sub) {
+		super(frame, "Enter your deposite", true);
+		this.sub = sub;
+		score = new JSpinner();
+		JButton ok = new JButton("OK");
+		ok.addActionListener(new DialogListener(frame));
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(score);
+		panel.add(ok, CENTER_ALIGNMENT);
+		add(panel, BorderLayout.CENTER);
+		setSize(300, 80);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+
+	private class DialogListener implements ActionListener {
+
+		JFrame frame;
+
+		public DialogListener(JFrame frame) {
+			this.frame = frame;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			sub.pay((int)score.getValue());
+			JOptionPane.showMessageDialog(frame, "You deposited your balance on " + (int)score.getValue() + " UAH", "Nice!",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+		}
+
+	}
+}

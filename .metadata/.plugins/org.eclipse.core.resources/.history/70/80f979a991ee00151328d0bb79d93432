@@ -1,0 +1,84 @@
+package finalproject.model;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Calendar;
+
+public class Admin implements SubscriberDAO {
+
+	private ArrayList<Subscriber> subs = new ArrayList<Subscriber>();
+
+	@Override
+	public long addSubscriber(Subscriber subscriber) {
+		int id = hashCode();
+		subscriber.setId(id);
+		subs.add(subscriber);
+		return id;
+	}
+
+	@Override
+	public void updateSubscriber(Subscriber subscriber) {
+		Subscriber oldSubscriber = getSubscriber(subscriber.getId());
+		if (oldSubscriber != null) {
+			oldSubscriber.setFirstName(subscriber.getFirstName());
+			oldSubscriber.setLastName(subscriber.getLastName());
+			oldSubscriber.setPhoneNumber(subscriber.getPhoneNumber());
+			oldSubscriber.setBalance(subscriber.getBalance());
+			oldSubscriber.setStatus(subscriber.isStatus());
+			oldSubscriber.setServices(subscriber.getServices());
+		}
+	}
+
+	@Override
+	public void deleteSubscriber(int subId) {
+		for (Iterator<Subscriber> it = subs.iterator(); it.hasNext();) {
+			Subscriber sub = it.next();
+			if (sub.getId() == subId) {
+				it.remove();
+			}
+		}
+	}
+
+	@Override
+	public Subscriber getSubscriber(int subId) {
+		for (Subscriber subscriber : subs) {
+			if (subscriber.getId() == subId) {
+				return subscriber;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Subscriber> findContacts() {
+		Collections.sort(subs);
+		Calendar cal = Calendar.getInstance();
+		for(Subscriber item : subs){
+			if(cal.get(Calendar.DAY_OF_MONTH) == 1){
+				int temp = item.getBalance() - item.getMonthDonate();
+				if(temp < 0){
+					item.setStatus(false);
+				} else{
+					item.setBalance(temp);
+				}
+			}
+		}
+		return subs;
+	}
+
+	@Override
+	public void setContacts(ArrayList<Subscriber> subs) {
+		this.subs = subs;
+	}
+
+	@Override
+	public int hashCode() {
+		int subId = Math.abs((int) Math.round(Math.random() * 1000 + System.currentTimeMillis()));
+		while (getSubscriber(subId) != null) {
+			subId = Math.abs((int) Math.round(Math.random() * 1000 + System.currentTimeMillis()));
+		}
+		return subId;
+	}
+
+}

@@ -1,0 +1,57 @@
+package finalproject.inface;
+
+import finalproject.engine.*;
+import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+public class MainFrame extends JFrame{
+
+	private JPanel windowContent;
+	private JPanel butGroup;
+	private JLabel imageLabel;
+	private JButton logAdmin;
+	private JButton logSub;
+	private JButton about;
+	private JButton exit;
+
+	public MainFrame() {
+		windowContent = new JPanel();
+		windowContent.setLayout(new BorderLayout());
+
+		butGroup = new JPanel();
+		butGroup.setLayout(new BoxLayout(butGroup, BoxLayout.Y_AXIS));
+		logAdmin = new JButton("Log as admin");
+		logAdmin.setToolTipText("Press this button, if you want to join admin menu.");
+		butGroup.add(logAdmin);
+		logSub = new JButton("Log as sub");
+		butGroup.add(logSub);
+		about = new JButton("About..");
+		butGroup.add(about);
+		exit = new JButton("Exit");
+		butGroup.add(exit);
+		windowContent.add("West", butGroup);
+		
+		imageLabel = new JLabel(new ImageIcon("resources\\logo_main.png"));
+		windowContent.add(imageLabel);
+
+		setTitle("Phone Station final project");
+		setContentPane(windowContent);
+		setPreferredSize(new Dimension(700, 500));
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+
+		MainFrameEngine mfe = new MainFrameEngine();
+		logAdmin.addActionListener(mfe);
+		logSub.addActionListener(mfe);
+		about.addActionListener(mfe);
+		exit.addActionListener(mfe);
+	}
+
+	public static void main(String[] args) {
+		new MainFrame();
+	}
+}

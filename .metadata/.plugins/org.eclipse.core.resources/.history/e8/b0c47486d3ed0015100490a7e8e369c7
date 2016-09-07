@@ -1,0 +1,47 @@
+package finalproject.inface;
+
+import finalproject.engine.AdminFrameEngine;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.*;
+
+
+public class AdminFrame extends JFrame {
+	
+	public AdminFrame(){
+		JTable subsTable = new JTable();
+		subsTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		add(new JScrollPane(subsTable),BorderLayout.CENTER);
+		
+		JPanel butPanel = new JPanel();
+		butPanel.setLayout(new BoxLayout(butPanel,BoxLayout.Y_AXIS));
+		JButton add = new JButton("Add");
+		JButton update = new JButton("Update File");
+		JButton loadFile = new JButton("Load File");
+		JButton edit = new JButton("Edit");
+		JButton delete = new JButton("Delete");
+		JButton requests = new JButton("Requests");
+		butPanel.add(add);
+		butPanel.add(edit);
+		butPanel.add(delete);
+		butPanel.add(update);
+		butPanel.add(loadFile);
+		butPanel.add(requests);
+		
+		add(butPanel,BorderLayout.WEST);
+		setTitle("Admin menu");
+		setPreferredSize(new Dimension(700, 500));
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+		
+		AdminFrameEngine afe = new AdminFrameEngine(subsTable);
+		add.addActionListener(afe);
+		update.addActionListener(afe);
+		edit.addActionListener(afe);
+		delete.addActionListener(afe);
+		loadFile.addActionListener(afe);
+		requests.addActionListener(afe);
+	}
+}

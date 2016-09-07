@@ -1,0 +1,51 @@
+package finalproject.model;
+
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
+
+public class SubsModel extends AbstractTableModel {
+
+	private static final String[] headers = { "ID", "First Name", "Last Name", "Phone", "Score", "Services", "Status" };
+	private final ArrayList<Subscriber> subs;
+
+	public SubsModel(ArrayList<Subscriber> subs) {
+		this.subs = subs;
+	}
+
+	@Override
+	public int getColumnCount() {
+		return headers.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return subs.size();
+	}
+
+	@Override
+	public String getColumnName(int col) {
+		return headers[col];
+	}
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		Subscriber subscriber = subs.get(row);
+		switch (col) {
+		case 0:
+			return subscriber.getId();
+		case 1:
+			return subscriber.getFirstName();
+		case 2:
+			return subscriber.getLastName();
+		case 3:
+			return subscriber.getPhoneNumber();
+		case 4:
+			return subscriber.getScore();
+		case 5:
+			return subscriber.getServices();
+		default:
+			return subscriber.isStatus();
+		}
+	}
+
+}

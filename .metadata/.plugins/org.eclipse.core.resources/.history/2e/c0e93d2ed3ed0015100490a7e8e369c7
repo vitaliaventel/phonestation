@@ -1,0 +1,42 @@
+package finalproject.inface;
+
+import finalproject.engine.*;
+import finalproject.model.Subscriber;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.*;
+
+public class SubFrame extends JFrame {
+
+	public SubFrame(Subscriber dial) {
+		JPanel butPanel = new JPanel();
+		butPanel.setLayout(new BoxLayout(butPanel, BoxLayout.Y_AXIS));
+		JButton pay = new JButton("Pay");
+		JButton cancelServices = new JButton("Cancel services");
+		JButton changeNumber = new JButton("Change number");
+		butPanel.add(pay);
+		butPanel.add(cancelServices);
+		butPanel.add(changeNumber);
+		add(butPanel, BorderLayout.WEST);
+
+		JTextArea mainArea = new JTextArea();
+		mainArea.setEditable(false);
+		mainArea.setLineWrap(true);
+		mainArea.setText(dial.toString());
+		add(new JScrollPane(mainArea), BorderLayout.CENTER);
+
+		setTitle(dial.getFirstName() + " " + dial.getLastName() + " menu");
+		setPreferredSize(new Dimension(700, 500));
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+
+		SubFrameEngine sfe = new SubFrameEngine(dial);
+		pay.addActionListener(sfe);
+		cancelServices.addActionListener(sfe);
+		changeNumber.addActionListener(sfe);
+
+	}
+}
